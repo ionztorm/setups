@@ -15,11 +15,11 @@ npm i -g emmet-ls @prisma/language-server
 ## Software
 
 ```zsh
-brew install gh helix starship arc neovim tmux bruno biome oven-sh/bun/bun
+brew install gh git helix starship arc neovim tmux bruno biome oven-sh/bun/bun yazi
 ```
 
 ```zsh
-brew install --cask github discord visual-studio-code cursor bitwarden
+brew install --cask discord visual-studio-code cursor bitwarden wezterm
 ```
 
 ## Fonts
