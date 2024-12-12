@@ -68,3 +68,105 @@ ssh-add --apple-use-keychain ~/.ssh/id_ed25519_<name>
 ```zsh
 git clone git@github.com:ionztorm/dotfiles ~/.config
 ```
+
+## Prep terminal
+
+### tmux
+
+- Install the tmux plugin manager:
+
+```zsh
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+```
+
+- Install the tmux catpuuccin theme:
+
+[Catppuccin TMUX Theme](https://github.com/catppuccin/tmux)
+
+```zsh
+mkdir -p ~/.config/tmux/plugins/catppuccin
+git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+```
+
+### starship
+
+- Create the zshrc configuration file:
+
+```zsh
+touch ~/.zshrc
+```
+
+- Add the following line to the end of the zsh config:
+
+```zsh
+eval "$(starship init zsh)"
+```
+
+- Install the starship pure prompt:
+
+```zsh
+starship preset pure-preset -o ~/.config/starship.toml
+```
+
+### tmux and neovim Setup
+
+- Navigate to a project folder us ing the terminal
+
+```zsh
+# for example
+cd Desktop/code/projects/my-project
+```
+
+- Create a tmux session:
+
+```zsh
+tmux new -s <session-name>
+
+# For example: tmux new -s my-project
+```
+
+- Open neovim - this will take some time to install plugins and language servers.
+
+```zsh
+nvim .
+```
+
+- Initiate the tmux theme:
+
+  1) Hold control and press 's'
+  2) Release control and press 'r'
+
+- Create some new tmux panes:
+
+  1) Hold control and press 's'
+  2) Release control and press 'c'
+
+Repeat this step for as many panes as you want. I like to have 4 in total, 1 for neovim, one for dev server, one for package installs, and one for file tree.
+
+- Navigate between panes:
+
+  1) Hold control and press 's'
+  2) Release control and press 0 / 1 / 2 / 3 (zero indexed)
+
+- Rename panes:
+
+  1) Hold control and press 's'
+  2) Release control and press ','
+  3) Enter a name.
+
+- Disconnect to a session:
+
+  1) Hold control and press 's'
+  2) Release control and press 'd'
+
+- View active sessions from terminal:
+
+```zsh
+tmux ls
+```
+
+- Reattach to a session:
+
+```zsh
+tmux attach -t <session name>
+```
