@@ -154,6 +154,28 @@ Repeat this step for as many panes as you want. I like to have 4 in total, 1 for
   2) Release control and press ','
   3) Enter a name.
 
+Names I use are: code / serve / bun or node / explore
+
+- Set up panes:
+
+  1) on the 'code' pane:
+
+  ```zsh
+  nvim .
+  ```
+
+  2) on the 'serve' pane:
+
+  ```zsh
+  bun --bun run dev
+  ```
+
+  3) on the 'explore' pane:
+
+  ```zsh
+  yazi
+  ```
+
 - Disconnect to a session:
 
   1) Hold control and press 's'
