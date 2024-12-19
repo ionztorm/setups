@@ -9,7 +9,7 @@
 ### Install software
 
 ```zsh
-brew install gh git starship arc neovim tmux discord bitwarden ripgrep lazygit node bruno biome oven-sh/bun/bun yazi typescript python go vscode-langservers-extracted typescript-language-server gopls tailwindcss-language-server fzf
+brew install gh git starship arc neovim tmux discord bitwarden ripgrep lazygit node bruno biome oven-sh/bun/bun yazi typescript python go vscode-langservers-extracted typescript-language-server gopls tailwindcss-language-server fzf fd
 ```
 
 ### Optional
