@@ -20,6 +20,15 @@ alias grr="git remote -v"
 alias grrm="git remote remove"
 alias grra="git remote add"
 alias grru="git remote update"
+
+alias zja="zellij attach"       # attach
+alias zjn="zellij -s"           # new session
+alias zjh="zellij -h"           # help
+alias zjl="zellij -l"           # layout
+alias zjn="zellij -n"           # new session with layout
+alias zjka="zellij ka"          # kill all
+alias zjk="zellij k"            # kill session
+
 alias tls="tmux ls"
 alias tns="tmux new -s"
 alias tks="tmux kill-session -t"
