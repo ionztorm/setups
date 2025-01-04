@@ -80,22 +80,6 @@ git clone git@github.com:ionztorm/dotfiles ~/.config
 
 ## Prep terminal
 
-### tmux
-
-- Install the tmux plugin manager:
-
-```zsh
-git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-```
-
-- Install the tmux catpuuccin theme:
-
-[Catppuccin TMUX Theme](https://github.com/catppuccin/tmux)
-
-```zsh
-mkdir -p ~/.config/tmux/plugins/catppuccin
-git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
-```
 
 ### zshrc config
 
@@ -191,10 +175,26 @@ eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/omp.yaml)"
 
 #### tmux
 
+
 - Install tmux
 
 ```zsh
 brew install tmux
+```
+
+- Install the tmux plugin manager:
+
+```zsh
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+```
+
+- Install the tmux catpuuccin theme:
+
+[Catppuccin TMUX Theme](https://github.com/catppuccin/tmux)
+
+```zsh
+mkdir -p ~/.config/tmux/plugins/catppuccin
+git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
 ```
 
 - Navigate to a project folder us ing the terminal
