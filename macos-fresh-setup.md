@@ -9,7 +9,7 @@
 ### Install software
 
 ```zsh
-brew install gh git starship arc neovim tmux discord bitwarden ripgrep lazygit node bruno biome oven-sh/bun/bun yazi typescript python go vscode-langservers-extracted typescript-language-server gopls tailwindcss-language-server fzf fd lsd
+brew install gh git starship arc neovim tmux discord bitwarden ripgrep lazygit node bruno biome oven-sh/bun/bun yazi typescript python go vscode-langservers-extracted typescript-language-server gopls tailwindcss-language-server fzf fd lsd zellij ghostty
 ```
 
 
@@ -34,13 +34,20 @@ npm i -g emmet-ls @prisma/language-server
 
 ## Create directories
 
+Note: I use multiple github accounts, so adjust the dirs below as necessary.
+If you use my zsh alias' below, there is one `cdp` to quickly access the projects area
+
 ```zsh
-mkdir -p ~/.config ~/.ssh ~/Desktop/code/projects ~/Desktop/code/notes ~/Desktop/code/courses
+mkdir -p ~/.config ~/.ssh ~/workspaces/github.com/<github-username>/projects ~/workspaces/notes ~/workspaces/courses
 ```
 
 ## Install Ghostty
 
-- [Ghostty terminal](https://github.com/mitchellh/ghostty)
+- This should already have been installed using the brew command above, but if not:
+
+```zsh
+brew install --cask ghostty
+```
 
 ## SSH
 
@@ -90,12 +97,67 @@ mkdir -p ~/.config/tmux/plugins/catppuccin
 git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
 ```
 
-### starship
+### zshrc config
 
 - Create the zshrc configuration file:
 
 ```zsh
 touch ~/.zshrc
+```
+
+- Add some useful aliases:
+
+```zsh
+alias nv="nvim"
+alias cl="clear"
+alias cdp="cd ~/workspaces/github.com/"
+alias nvt="NVIM_APPNAME=testbuild nvim"
+alias gs="git status"
+alias gc="git commit -m"
+alias ga="git add"
+alias gaa="git add ."
+alias gp="git push"
+alias gpf="git push --force"
+alias gpl="git pull"
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gb="git branch"
+alias gl="git log"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gr="git remote"
+alias grr="git remote -v"
+alias grrm="git remote remove"
+alias grra="git remote add"
+alias grru="git remote update"
+
+alias zja="zellij attach"               # attach
+alias zjs="zellij -s"                   # new session
+alias zjh="zellij -h"                   # help
+alias zjl="zellij -l"                   # layout
+alias zjn="zellij -n"                   # new session with layout
+alias zjls="zellij ls"                  # list sessions
+alias zj="zellij"                       # zellij
+alias zjd="zellij d"                    # delete session
+alias zjda="zellij da"                  # kill session
+alias zjk="zellij k"                    # kill session
+alias zjka="zellij ka"                  # kill all sessions
+
+alias tls="tmux ls"
+alias tns="tmux new -s"
+alias tks="tmux kill-session -t"
+alias tka="tmux kill-session -a"
+alias tat="tmux attach -t"
+```
+
+### command line
+
+#### Starship
+
+- Install starship
+
+```zsh
+brew install starship
 ```
 
 - Add the following line to the end of the zsh config:
@@ -110,13 +172,36 @@ eval "$(starship init zsh)"
 starship preset pure-preset -o ~/.config/starship.toml
 ```
 
-### tmux and neovim Setup
+#### oh my posh
+
+- Install oh my posh
+
+```zsh
+brew install oh-my-posh
+```
+
+- Add the following line to the end of the zsh config:
+    - the theme should work if the dotfiles were downloaded correctly
+
+```zsh
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/omp.yaml)"
+```
+
+### Multiplexer
+
+#### tmux
+
+- Install tmux
+
+```zsh
+brew install tmux
+```
 
 - Navigate to a project folder us ing the terminal
 
 ```zsh
 # for example
-cd Desktop/code/projects/my-project
+cd ~/workspaces/projects/github/my-project
 ```
 
 - Create a tmux session:
@@ -125,12 +210,6 @@ cd Desktop/code/projects/my-project
 tmux new -s <session-name>
 
 # For example: tmux new -s my-project
-```
-
-- Open neovim - this will take some time to install plugins and language servers.
-
-```zsh
-nvim .
 ```
 
 - Initiate the tmux theme:
@@ -194,3 +273,84 @@ tmux ls
 ```zsh
 tmux attach -t <session name>
 ```
+
+#### ZelliJ
+
+- This is an alternative to tmux - I prefer it.
+
+- install zellij
+
+```zsh
+brew install zellij
+```
+
+- Navigate to a project folder us ing the terminal
+
+```zsh
+# for example
+cd ~/workspaces/projects/github/my-project
+```
+
+- Create a zellij session:
+
+```zsh
+zellij -s <session-name>
+# or, if you used my alias'
+zjs <session-name> 
+
+# For example: zjs my-project
+```
+
+- zellij panes
+
+    - In Zellij, panes are created by splitting the screen. You can split the screen horizontally or vertically.
+    - In place of tmux windows, Zellij uses tabs.
+
+To create these:
+
+Note: if you default to locked mode (recommended!), add CTRL + g before the below bindings.
+
+```
+panes: CTRL + p -> n
+tabs: CTRL + t -> n
+```
+
+To rename:
+
+```
+panes: CTRL + p -> c
+tabs: CTRL + t -> r
+```
+
+- Detach from a session:
+
+```
+CTRL + O -> d
+```
+
+- List sessions
+
+```zsh
+zellij ls
+# or
+zjls
+```
+
+- Reattach
+
+```zsh
+zellij -a <session name>
+# or
+zja <session name>
+```
+
+### Neovim
+
+- Open neovim - this will take some time to install plugins and language servers.
+
+```zsh
+nvim .
+# or, if you used my alias'
+nv .
+```
+
