@@ -1,7 +1,8 @@
 ```zsh
 alias nv="nvim"
 alias cl="clear"
-alias cdp="cd ~/Desktop/code/projects"
+alias cdp="cd ~/workspaces/github.com/"
+alias nvt="NVIM_APPNAME=testbuild nvim"
 alias gs="git status"
 alias gc="git commit -m"
 alias ga="git add"
@@ -20,6 +21,19 @@ alias grr="git remote -v"
 alias grrm="git remote remove"
 alias grra="git remote add"
 alias grru="git remote update"
+
+alias zja="zellij attach"               # attach
+alias zjs="zellij -s"                   # new session
+alias zjh="zellij -h"                   # help
+alias zjl="zellij -l"                   # layout
+alias zjn="zellij -n"                   # new session with layout
+alias zjls="zellij ls"                  # list sessions
+alias zj="zellij"                       # zellij
+alias zjd="zellij d"                    # delete session
+alias zjda="zellij da"                  # kill session
+alias zjk="zellij k"                    # kill session
+alias zjka="zellij ka"                  # kill all sessions
+
 alias tls="tmux ls"
 alias tns="tmux new -s"
 alias tks="tmux kill-session -t"
