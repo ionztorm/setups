@@ -33,6 +33,13 @@ alias zjd="zellij d"                    # delete session
 alias zjda="zellij da"                  # kill session
 alias zjk="zellij k"                    # kill session
 alias zjka="zellij ka"                  # kill all sessions
+alias zja="zellij attach"       # attach
+alias zjn="zellij -s"           # new session
+alias zjh="zellij -h"           # help
+alias zjl="zellij -l"           # layout
+alias zjn="zellij -n"           # new session with layout
+alias zjka="zellij ka"          # kill all
+alias zjk="zellij k"            # kill session
 
 alias tls="tmux ls"
 alias tns="tmux new -s"
