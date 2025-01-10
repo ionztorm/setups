@@ -9,15 +9,35 @@
 ### Install software
 
 ```zsh
-brew install gh git starship arc neovim tmux discord bitwarden ripgrep lazygit node bruno biome oven-sh/bun/bun yazi typescript python go vscode-langservers-extracted typescript-language-server gopls tailwindcss-language-server fzf fd lsd zellij ghostty
+brew install arc discord bitwarden bruno biome raycast 
 ```
 
+### Dev Environment
+```zsh
+brew install gh git starship neovim zellij lazygit
+```
+
+### CLI Tools
+```zsh
+brew install ghostty ripgrep yazi fzf fd lsd
+```
+
+### Languages & Runtimes
+```zsh
+brew install node oven-sh/bun/bun python go typescript
+```
+
+### Language Servers
+
+```zsh
+brew install typescript-language-server gopls tailwindcss-language-server basedpyright ruff-lsp vscode-langservers-extracted
+```
 
 
 ### Optional
 
 ```zsh
-brew install helix visual-studio-code
+brew install helix visual-studio-code tmux notion oh-my-posh fastfetch
 ```
 
 ### Fonts
