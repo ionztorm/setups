@@ -76,6 +76,11 @@ brew install --cask ghostty
 
 ## SSH
 
+If you don't have an SSH key, generate one following [SSH From Scratch](/ssh-from-scratch.md) and [Multi SSH for different Github Accounts](/multi-github-ssh.md) if needed.
+)
+
+```zsh
+
 ### From Backup
 
 ```zsh
