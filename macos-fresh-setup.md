@@ -30,13 +30,13 @@ brew install node oven-sh/bun/bun python go typescript
 ### Language Servers
 
 ```zsh
-brew install typescript-language-server gopls tailwindcss-language-server basedpyright ruff-lsp vscode-langservers-extracted
+brew install typescript-language-server tailwindcss-language-server basedpyright vscode-langservers-extracted
 ```
 
 ## Linters and Formatters
 
 ```zsh
-brew install biome
+brew install biome ruff-lsp gopls
 ```
 
 ### Optional
