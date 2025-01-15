@@ -9,7 +9,7 @@
 ### Install software
 
 ```zsh
-brew install arc discord bitwarden bruno biome raycast 
+brew install arc discord bitwarden bruno raycast 
 ```
 
 ### Dev Environment
@@ -33,6 +33,11 @@ brew install node oven-sh/bun/bun python go typescript
 brew install typescript-language-server gopls tailwindcss-language-server basedpyright ruff-lsp vscode-langservers-extracted
 ```
 
+## Linters and Formatters
+
+```zsh
+brew install biome
+```
 
 ### Optional
 
