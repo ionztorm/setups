@@ -1,6 +1,6 @@
-# Setup Macbook from Fresh
+Setup Macbook from Fresh
 
-## Homebrew
+# Homebrew
 
 ### Install Homebrew & Homebrew apps
 
@@ -8,52 +8,51 @@
 
 ### Install software
 
-```zsh
+```bash
 brew install arc discord bitwarden bruno raycast 
 ```
 
 ### Dev Environment
-```zsh
-brew install gh git oh-my-posh neovim tmux lazygit
-```
 
-### CLI Tools
-```zsh
-brew install ghostty ripgrep yazi fzf fd lsd
+If you plan to use my dev environment from my dotfiles, these are required.
+
+```bash
+brew install ghostty gh git oh-my-posh neovim tmux lazygit ripgrep yazi fzf fd lsd bash bc coreutils gawk gh glab gsed jq nowplaying-cli
+brew install --cask font-monaspace-nerd-font font-noto-sans-symbols-2
 ```
 
 ### Languages & Runtimes
-```zsh
+```bash
 brew install node oven-sh/bun/bun python go typescript
 ```
 
-### Language Servers
+### Language Servers (optional if using neovim)
 
-```zsh
+```bash
 brew install typescript-language-server tailwindcss-language-server basedpyright vscode-langservers-extracted
 ```
 
 ### Linters and Formatters
 
-```zsh
-brew install biome ruff-lsp gopls
+```bash
+brew install biome ruff gopls
 ```
 
 ### Optional
 
-```zsh
+```bash
 brew install helix visual-studio-code zellij notion starship fastfetch
 ```
 
-### Fonts
+### Fonts (optional)
 
-```zsh
+```bash
 brew install --cask font-ubuntu-mono font-jetbrains-mono font-iosevka font-inconsolata font-fira-code font-roboto-mono font-source-code-pro font-azeret-mono font-cascadia-code font-maple font-monaspace font-geist-mono-nerd-font font-anonymous-pro
 ```
 
-## npm
+## npm (optional)
 
-```zsh
+```bash
 npm i -g emmet-ls @prisma/language-server
 ```
 
@@ -62,44 +61,37 @@ npm i -g emmet-ls @prisma/language-server
 Note: I use multiple github accounts, so adjust the dirs below as necessary.
 If you use my zsh alias' below, there is one `cdp` to quickly access the projects area
 
-```zsh
+```bash
 mkdir -p ~/.config ~/.ssh ~/workspaces/github.com/<github-username>/projects ~/workspaces/notes ~/workspaces/courses
 ```
 
 If you have many mac devices and prefer to store on in iCloud:
-```zsh
+```bash
 mkdir -p ~/.config ~/.ssh ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/github.com/<github-username>/projects ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/notes ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/courses
-```
-
-## Install Ghostty
-
-- This should already have been installed using the brew command above, but if not:
-
-```zsh
-brew install --cask ghostty
 ```
 
 ## SSH
 
 If you don't have an SSH key, generate one following [SSH From Scratch](/ssh-from-scratch.md) and [Multi SSH for different Github Accounts](/multi-github-ssh.md) if needed.
-)
+If you have multiple apple devices, I recommend backing these up so you don't have to generate them again.
+
 
 ### From Backup
 
-```zsh
+```bash
 open ~/.ssh
 ```
 
 - Copy files from SSH backup into .ssh directory
 - Start the agent
 
-```zsh
+```bash
 eval "$(ssh-agent -s)"
 ```
 
 - Add to key chain
 
-```zsh
+```bash
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519_<name>
 ```
 
@@ -107,24 +99,33 @@ ssh-add --apple-use-keychain ~/.ssh/id_ed25519_<name>
 
 ## Clone dotfiles
 
-```zsh
+```bash
 git clone git@github.com:ionztorm/dotfiles ~/.config
 ```
 
 ## Prep terminal
 
+Open ghostty
 
 ### zshrc config
 
 - Create the zshrc configuration file:
 
-```zsh
+```bash
 touch ~/.zshrc
 ```
 
-- Add some useful aliases:
+- Open the file - use vim for now, we will setup neovim later.
 
-```zsh
+```bash
+vi ~/zshrc
+```
+
+- Add some useful aliases (just copy paste):
+
+To paste in vim, press escape so that you are in Normal mode, then press 'p'
+
+```bash
 alias nv="nvim"
 alias cl="clear"
 alias cdp="cd ~/workspaces/github.com/"
@@ -155,6 +156,10 @@ alias tka="tmux kill-session -a"
 alias tat="tmux attach -t"
 ```
 
+- Save and exit vim:
+
+To save and exit, press escape so that you are in Normal mode, then type `:wq` and press enter.
+
 Type the folllowing to load the new alias':
 
 ```bash
@@ -165,18 +170,25 @@ source ~/.zshrc
 
 #### oh my posh
 
-- Install oh my posh
-
-```zsh
-brew install oh-my-posh
-```
-
 - Add the following line to the end of the zsh config:
     - the theme should work if the dotfiles were downloaded correctly
 
-```zsh
+- Again:
+
+```bash
+vi ~/.zshrc
+```
+
+- Press 'G' to move to the end of the file, then press 'o' to open a new line. Press 'escape'
+to return to normal mode, then press 'p' to paste the below line.
+
+```bash
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/catppuccin_mocka.json)"
 ```
+
+- Save and exit vim:
+
+Again, to save and exit, press escape so that you are in Normal mode, then type `:wq` and press enter.
 
 Type the folllowing to load the new command line:
 
@@ -188,34 +200,20 @@ source ~/.zshrc
 
 #### tmux
 
-- Install the tmux plugin manager:
-
-```zsh
-git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-```
-
-#### Install theme dependencies
+- Navigate to a project folder using the terminal
 
 ```bash
-brew install --cask font-monaspace-nerd-font font-noto-sans-symbols-2
-brew install bash bc coreutils gawk gh glab gsed jq nowplaying-cli
-```
-
-- Navigate to a project folder us ing the terminal
-
-```zsh
 # for example
-cd ~/workspaces/projects/github/my-project
+cd ~/workspaces/projects/github/my-project # if you chose to store on your mac
+cd ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/projects/github/my-project # if you chose to store on iCloud
 ```
-
-Adjust if you saved to iCloud.
 
 - Create a tmux session:
 
-```zsh
-tmux new -s <session-name>
+```bash
+tns <session-name>
 
-# For example: tmux new -s my-project
+# For example: tns my-project
 ```
 
 - Initiate the tmux theme:
@@ -230,7 +228,7 @@ tmux new -s <session-name>
   1) Hold control and press 's'
   2) Release control and press 'd'
   3) To kill all sessions, type `tmux kill-session -a` in the terminal.
-  4) Chesk there are no sessions with `tls`
+  4) Check there are no sessions with `tls`
   5) If there are no sessions, start a new one with `tns <session-name>`
   6) Hold control and press 's'
   7) Release control and press 'r'
@@ -260,19 +258,19 @@ Names I use are: code / serve / bun or node / explore
 
   1) on the 'code' pane:
 
-  ```zsh
+  ```bash
   nv .
   ```
 
   2) on the 'serve' pane:
 
-  ```zsh
+  ```bash
   bun --bun run dev
   ```
 
   3) on the 'explore' pane:
 
-  ```zsh
+  ```bash
   yazi
   ```
 
@@ -283,13 +281,13 @@ Names I use are: code / serve / bun or node / explore
 
 - View active sessions from terminal:
 
-```zsh
+```bash
 tls
 ```
 
 - Reattach to a session:
 
-```zsh
+```bash
 tat <session name>
 ```
 
@@ -297,9 +295,7 @@ tat <session name>
 
 - Open neovim - this will take some time to install plugins and language servers.
 
-```zsh
-nvim .
-# or, if you used my alias'
+```bash
 nv .
 ```
 
@@ -329,20 +325,20 @@ alias zjka="zellij ka"                  # kill all sessions
 
 - install zellij
 
-```zsh
+```bash
 brew install zellij
 ```
 
 - Navigate to a project folder us ing the terminal
 
-```zsh
+```bash
 # for example
 cd ~/workspaces/projects/github/my-project
 ```
 
 - Create a zellij session:
 
-```zsh
+```bash
 zellij -s <session-name>
 # or, if you used my alias'
 zjs <session-name> 
@@ -379,7 +375,7 @@ CTRL + O -> d
 
 - List sessions
 
-```zsh
+```bash
 zellij ls
 # or
 zjls
@@ -387,7 +383,7 @@ zjls
 
 - Reattach
 
-```zsh
+```bash
 zellij -a <session name>
 # or
 zja <session name>
@@ -400,21 +396,18 @@ zja <session name>
 
 - Install starship
 
-```zsh
+```bash
 brew install starship
 ```
 
 - Add the following line to the end of the zsh config:
 
-```zsh
+```bash
 eval "$(starship init zsh)"
 ```
 
 - Install the starship pure prompt:
 
-```zsh
+```bash
 starship preset pure-preset -o ~/.config/starship.toml
 ```
-
-### If you chose Zellij instead of tmux
-
