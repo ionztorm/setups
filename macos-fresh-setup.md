@@ -6,6 +6,12 @@ Setup Macbook from Fresh
 
 - [Homebrew](https://brew.sh/)
 
+Pay attention to this install. It will ask for your password during the process, and after it has finished,
+you will need to run some commands to finalise the installaion and add it to your path. It will tell 
+you what to do at the end of the install.
+
+```bash
+
 ### Dev Environment
 
 If you plan to use my dev environment from my dotfiles, these are required.
@@ -91,7 +97,21 @@ ssh-add --apple-use-keychain ~/.ssh/id_ed25519_<name>
 ## Clone dotfiles
 
 ```bash
+# SSH
 git clone git@github.com:ionztorm/dotfiles ~/.config
+
+# HTTPS
+git clone https://github.com/ionztorm/dotfiles.git ~/.config
+```
+
+Or, if you only want the neovim config:
+
+```bash
+# SSH
+git clone git@github.com:ionztorm/sennvim.git ~/.config
+
+# HTTPS
+git clone https://github.com/ionztorm/sennvim.git ~/.config
 ```
 
 ## Prep terminal
