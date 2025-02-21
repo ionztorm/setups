@@ -10,8 +10,6 @@ Pay attention to this install. It will ask for your password during the process,
 you will need to run some commands to finalise the installaion and add it to your path. It will tell 
 you what to do at the end of the install.
 
-```bash
-
 ### Dev Environment
 
 If you plan to use my dev environment from my dotfiles, these are required.
