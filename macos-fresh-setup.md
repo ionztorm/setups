@@ -19,7 +19,7 @@ brew install ghostty gh git oh-my-posh neovim tmux lazygit ripgrep yazi fzf fd l
 This is stuff I like to use. Adjust as necessary.
 
 ```bash
-brew install zed-browser discord bitwarden bruno raycast 
+brew install zed-browser discord bitwarden bruno raycast notion obsidian
 ```
 
 ### Languages & Runtimes
@@ -56,7 +56,6 @@ brew install --cask font-ubuntu-mono font-jetbrains-mono font-iosevka font-incon
 ## Create directories
 
 Note: I use multiple github accounts, so adjust the dirs below as necessary.
-If you use my zsh alias' below, there is one `cdp` to quickly access the projects area
 
 ```bash
 mkdir -p ~/.config ~/.ssh ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/github.com/<github-username>/projects ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/notes ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/courses
@@ -218,3 +217,16 @@ To detach from a session, press `control` + `s` then `d`
 To reattach to a session, use `tat <session-name>` in the terminal.
 
 To see a list of sessions, use `tls` in the terminal.
+
+
+## Alternatives
+
+You can alternativley use:
+
+- Zellij instead of tmux
+- starship instead of oh-my-posh
+- helix instead of neovim
+
+You can adjust this setup guide by following the apply the changes in the [Alternative Setups](./alternative-setups.md) guide.
+
+Note that Helix does not require any setup.
