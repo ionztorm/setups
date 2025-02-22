@@ -15,7 +15,7 @@ you what to do at the end of the install.
 If you plan to use my dev environment from my dotfiles, these are required.
 
 ```bash
-brew install ghostty gh git oh-my-posh neovim tmux lazygit ripgrep yazi fzf fd lsd zoxide regex
+brew install ghostty gh git starship neovim zellij lazygit ripgrep yazi fzf fd lsd zoxide regex
 ```
 
 ### Install software
@@ -124,11 +124,13 @@ Open ghostty
 nvim ~/.zshrc
 ```
 
-- Add some useful aliases (just copy paste):
-- Setup oh-my-posh
-- Setup zoxide
+This is going to run neovim for the first time and install the plugins. Once they're all installed, I find it's worth exiting and reopening neovim to make sure everything is working as expected. You can exist neovim by typing `:q` and pressing enter. Then use the above command again.
 
-To paste in vim, press escape so that you are in Normal mode, then press 'p'
+Now let's:
+
+- Add some useful aliases (just copy paste):
+- Setup starship
+- Setup zoxide
 
 ```bash
 alias cl="clear"
@@ -163,21 +165,27 @@ alias grrm="git remote remove"
 alias grra="git remote add"
 alias grru="git remote update"
 
-#tmux
+# zellij
 
-alias tls="tmux ls"                     # list sessions
-alias tns="tmux new -s"                 # new session
-alias tks="tmux kill-session -t"        # kill named session
-alias tka="tmux kill-server"            # kill all sessions
-alias tat="tmux attach -t"              # reattach to named session
+alias zja="zellij attach"               # attach
+alias zjs="zellij -s"                   # new session
+alias zjh="zellij -h"                   # help
+alias zjl="zellij -l"                   # layout
+alias zjn="zellij -n"                   # new session with layout
+alias zjls="zellij ls"                  # list sessions
+alias zj="zellij"                       # zellij
+alias zjd="zellij d"                    # delete session
+alias zjda="zellij da"                  # kill session
+alias zjk="zellij k"                    # kill session
+alias zjka="zellij ka"                  # kill all sessions
 
 # python
 alias pvenv="python3 -m venv .venv"
 alias pvact="source .venv/bin/activate"
 
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/catppuccin_mocka.json)"
+eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/go/bin         # Sometimes homebrew doesn't add this to the path
 ```
 
 - Save and exit vim:
@@ -194,7 +202,7 @@ In some cases, you may need to restart the terminal. Try running `z ~/.config`. 
 
 ### Multiplexer
 
-#### tmux
+#### zellij
 
 - Navigate to a project folder using the terminal
 
@@ -203,46 +211,35 @@ In some cases, you may need to restart the terminal. Try running `z ~/.config`. 
 z ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/projects/github/my-project
 ```
 
-- Create a tmux session:
+- Create a session:
 
 ```bash
-tns <session-name>
+zjs <session-name>
 
-# For example: tns my-project
+# For example: zjs my-project
 ```
 
-Next:
+Quick keybind reference:
 
-1) Hold `control` and press `s` then press `I`
-2) Hold `control` and press `s` then press `r`
+- Create a session: `zjs <session-name>`
+- Detach from a session: `CTRL + G, CTRL + O -> d`
+- Create a pane: `CTRL + G, CTRL + P -> n`
+- Create a tab: `CTRL + G, CTRL + T -> n`
+- Rename a pane: `CTRL + G, CTRL + P -> c`
+- Rename a tab: `CTRL + G, CTRL + T -> r`
+- Reattach to a session: `zja <session-name>`
 
-This should load the tmux config and install plugins.
+**If you do not like the padding and borders around panes you can remove them by:**
 
-If it did not, you may need to restart.
-
-3. Detach from a session: Hold `control` and press `s` then press `d`
-4. Type `tks` to kill all sessions.
-5. Recreate your session with `tns <session-name>`
-6. Repeat steps 1 and 2.
-
-You can create new windows with `control` + `s` then `c` and switch between them with `control` + `s` then `n` or `p` (or their index number).
-
-You can rename the window with `control` + `s` then `,`
-
-Or you can close a window with `control` + `s` then `x`
-
-To detach from a session, press `control` + `s` then `d`
-To reattach to a session, use `tat <session-name>` in the terminal.
-
-To see a list of sessions, use `tls` in the terminal.
-
+1. Enter Pane mode using `CTRL + G, CTRL + P`
+2. Press `z`.
 
 ## Alternatives
 
 You can alternativley use:
 
-- Zellij instead of tmux
-- starship instead of oh-my-posh
+- tmux instead of zellij
+- oh-my-posh instead of starship
 - helix instead of neovim
 
 You can adjust this setup guide by following the apply the changes in the [Alternative Setups](./alternative-setups.md) guide.
