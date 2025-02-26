@@ -6,63 +6,86 @@ Setup Macbook from Fresh
 
 - [Homebrew](https://brew.sh/)
 
-Pay attention to this install. It will ask for your password during the process, and after it has finished,
-you will need to run some commands to finalise the installaion and add it to your path. It will tell 
-you what to do at the end of the install.
+Homebrew is a package manager for MacOS and Linux. It's what I use to keep my packages up to date. You can likely use whichever package manager you prefer, but you'll have to double check that the packages exist.
 
-### Dev Environment
+To install homebrew, visit the link above and follow the installation instructions.
 
-If you plan to use my dev environment from my dotfiles, these are required.
+### Installing Packages
 
-```bash
-brew install ghostty gh git starship neovim zellij lazygit ripgrep yazi fzf fd lsd zoxide regex
-```
+The following commands will install the packages I use. Feel free to add or remove items
 
-### Install software
+#### Dev Environment
 
-This is stuff I like to use. Adjust as necessary.
+##### Terminal and Editor
 
 ```bash
-brew install zed-browser discord bitwarden bruno raycast notion obsidian
+brew install ghostty helix tmux
 ```
 
-### Languages & Runtimes
-```bash
-brew install node oven-sh/bun/bun python go typescript
-```
-
-### Language Servers (optional if using neovim, install if you choose helix)
+##### Command Line Tools and Utilities
 
 ```bash
-brew install typescript-language-server tailwindcss-language-server basedpyright vscode-langservers-extracted
+brew install gh git lazygit ripgrep fzf lsd yazi zoxide regex
 ```
+
+##### Languages
+
+```bash
+brew install typescript go python
+```
+
+##### Runtimes
+
+```bash
+brew install node oven-sh/bun/bun
+```
+
+##### Language Tools (LSP, Formatters, Linters)
+
+```bash
+brew install gopls ruff typescript-language-server tailwindcss-language-server basedpyright vscode-langservers-extracted biome prettier
+```
+
 ```bash
 npm i -g emmet-ls @prisma/language-server
 ```
 
-### Linters and Formatters
+##### Software
 
 ```bash
-brew install biome ruff gopls
+brew install discord bitwarden bruno raycast obsidian
 ```
 
 ### Optional
 
 ```bash
-brew install helix visual-studio-code zellij notion starship fastfetch
+brew install visual-studio-code neovim zellij starship
 ```
 
-### Popular Coding Fonts (optional)
+### Markdown live preview (Helix users only - this is covered in nvim)
+
+If you are using my neovim config, live preview of html / md files cah be acheieved using the keymap: `<leader>ls`. This is not possible in Helix yet, so we can use a github cli extension:
+
+Install (requires github cli which wrs installed above):
 
 ```bash
-brew install --cask font-ubuntu-mono font-jetbrains-mono font-iosevka font-inconsolata font-fira-code font-roboto-mono font-source-code-pro font-azeret-mono font-cascadia-code font-maple font-monaspace font-geist-mono-nerd-font font-anonymous-pro
+gh extension install yusukebe/gh-markdown-preview
 ```
+
+Now we can run the command:
+
+```bash
+gh markdown-preview <file name>
+```
+
+This loads the markdown file in your browser with github formatting. It uses a live server so updates on save.
+
 ## Create directories
 
 Note: I use multiple github accounts, so adjust the dirs below as necessary.
 
 ```bash
-mkdir -p ~/.config ~/.ssh ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/github.com/<github-username>/projects ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/notes ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/courses
+mkdir -p ~/.config ~/.ssh
 ```
 
 ## SSH
@@ -116,20 +139,18 @@ git clone https://github.com/ionztorm/sennvim.git ~/.config
 
 Open ghostty
 
-### setup neovim and zshrc config
+### zshrc config
 
 - Create the zshrc configuration file:
 
 ```bash
-nvim ~/.zshrc
+hx ~/.zshrc
 ```
 
-This is going to run neovim for the first time and install the plugins. Once they're all installed, I find it's worth exiting and reopening neovim to make sure everything is working as expected. You can exist neovim by typing `:q` and pressing enter. Then use the above command again.
+Let's:
 
-Now let's:
-
-- Add some useful aliases (just copy paste):
-- Setup starship
+- Add some useful aliases for lsd and git (just copy paste):
+- Setup oh-my-posh
 - Setup zoxide
 
 ```bash
@@ -165,82 +186,67 @@ alias grrm="git remote remove"
 alias grra="git remote add"
 alias grru="git remote update"
 
-# zellij
+# tmux
 
-alias zja="zellij attach"               # attach
-alias zjs="zellij -s"                   # new session
-alias zjh="zellij -h"                   # help
-alias zjl="zellij -l"                   # layout
-alias zjn="zellij -n"                   # new session with layout
-alias zjls="zellij ls"                  # list sessions
-alias zj="zellij"                       # zellij
-alias zjd="zellij d"                    # delete session
-alias zjda="zellij da"                  # kill session
-alias zjk="zellij k"                    # kill session
-alias zjka="zellij ka"                  # kill all sessions
+alias tls="tmux ls"                     # list sessions
+alias tns="tmux new -s"                 # new session
+alias tks="tmux kill-session -t"        # kill named session
+alias tka="tmux kill-server"            # kill all sessions
+alias tat="tmux attach -t"              # reattach to named session
 
 # python
 alias pvenv="python3 -m venv .venv"
 alias pvact="source .venv/bin/activate"
 
-eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/catppuccin_mocka.json)"
 eval "$(zoxide init zsh)"
 export PATH=$PATH:$HOME/go/bin         # Sometimes homebrew doesn't add this to the path
 ```
 
-- Save and exit vim:
+- Save and exit. Helix works the same way as vim/neovim - press `esc` to enter normal mode and type `:wq`.
 
-To save and exit, press escape so that you are in Normal mode, then type `:wq` and press enter.
-
-Type the folllowing to load the new alias':
+Source the file to load the changes.
 
 ```bash
 source ~/.zshrc
 ```
 
-In some cases, you may need to restart the terminal. Try running `z ~/.config`. If you get an error, restart the terminal.
+In some cases, you may need to restart the terminal. Try running `z ~/.config`. If you get an error, restart the terminal. `z` is the command used in place of `cd` when using zoxide.
 
-### Multiplexer
+### Tmux
 
-#### zellij
+Tmux is a `T`erminal `Mu`ltiple`x`er - basically it allows you to create sessions that you can attach to and detach from, but the sessions remain active (as long as the device remains turned on). You can create a session for a particular development project, with servers running, detatch from it and re-attach at a later date to find the server still running and your code editor still active.
 
 - Navigate to a project folder using the terminal
 
 ```bash
 # for example
-z ~/Library/Mobile Documents/com~apple~CloudDocs/workspaces/projects/github/my-project
+z project/directory
 ```
 
 - Create a session:
 
 ```bash
-zjs <session-name>
+tns <session-name> # often the project name
 
-# For example: zjs my-project
+# For example: tns my-project
 ```
 
 Quick keybind reference:
 
-- Create a session: `zjs <session-name>`
-- Detach from a session: `CTRL + G, CTRL + O -> d`
-- Create a pane: `CTRL + G, CTRL + P -> n`
-- Create a tab: `CTRL + G, CTRL + T -> n`
-- Rename a pane: `CTRL + G, CTRL + P -> c`
-- Rename a tab: `CTRL + G, CTRL + T -> r`
-- Reattach to a session: `zja <session-name>`
-
-**If you do not like the padding and borders around panes you can remove them by:**
-
-1. Enter Pane mode using `CTRL + G, CTRL + P`
-2. Press `z`.
+- `ctrl` + `s` -> `c` = create new window
+- `ctrl` + `s` -> `,` = rename window
+- `ctrl` + `s` -> `x` = close window
+- `ctrl` + `s` -> `num` = where num is an index number - to switch between windows.
+- `ctrl` + `s` -> `r` = reload config
 
 ## Alternatives
 
 You can alternativley use:
 
-- tmux instead of zellij
-- oh-my-posh instead of starship
-- helix instead of neovim
+- zellij instead of tmux
+- starship instead of oh-my-posh
+- neovim instead of helix
 
 You can adjust this setup guide by following the apply the changes in the [Alternative Setups](./alternative-setups.md) guide.
 

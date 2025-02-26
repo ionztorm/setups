@@ -2,18 +2,24 @@
 
 ## Tmux
 
-Use tmux instead of zellij.
+Use zellij instead of tmux.
 
-Replace the zellij alias in the [Fresh Setup](./macos-fresh-setup.md) with these.
+Replace the tmux alias' in the [Fresh Setup](./macos-fresh-setup.md) with these.
 
 ```bash
 # in ~/.zshrc
 
-alias tls="tmux ls"                     # list sessions
-alias tns="tmux new -s"                 # new session
-alias tks="tmux kill-session -t"        # kill named session
-alias tka="tmux kill-server"            # kill all sessions
-alias tat="tmux attach -t"              # reattach to named session
+alias zja="zellij attach"               # attach
+alias zjs="zellij -s"                   # new session
+alias zjh="zellij -h"                   # help
+alias zjl="zellij -l"                   # layout
+alias zjn="zellij -n"                   # new session with layout
+alias zjls="zellij ls"                  # list sessions
+alias zj="zellij"                       # zellij
+alias zjd="zellij d"                    # delete session
+alias zjda="zellij da"                  # kill session
+alias zjk="zellij k"                    # kill session
+alias zjka="zellij ka"                  # kill all sessions
 ```
 
 Remember to source the file after adding the aliases.
@@ -22,13 +28,12 @@ Remember to source the file after adding the aliases.
 source ~/.zshrc
 ```
 
-
-## oh-my-posh
+## starship
 
 Alternative to Oh My Posh.
 
 - Add the following line to the end of the zsh config:
 
 ```bash
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/catppuccin_mocka.json)"
+eval "$(starship init zsh)"
 ```
